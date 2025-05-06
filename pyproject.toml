@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "semaclust"
+version = "0.1.1"
+description = "Semantic text clustering using sentence embeddings and agglomerative clustering."
+readme = "readme.md"
+authors = [
+    {name = "Mert Cobanov", email = "mertcobanov@gmail.com"}
+]
+license = {text = "MIT"}
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: General",
+]
+dependencies = [
+    "scikit-learn>=1.0",
+    "sentence-transformers>=2.2",
+    "numpy>=1.20",
+]
+keywords = ["nlp", "clustering", "text", "semantic", "embeddings"]
+
+[project.urls]
+Homepage = "https://github.com/cobanov/semaclust"
+Repository = "https://github.com/cobanov/semaclust.git" 
