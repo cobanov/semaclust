@@ -149,30 +149,3 @@ class TextClusterer:
         """
         replacement_map = self.get_replacement_map(texts, representative_selector)
         return [replacement_map[text] for text in texts]
-
-
-# Example usage
-if __name__ == "__main__":
-    texts = [
-        "New York",
-        "Los Angeles",
-        "San Francisco",
-        "new york city",
-        "LA",
-        "San Fran",
-    ]
-
-    # Create clusterer
-    clusterer = TextClusterer()
-
-    # Get clusters
-    clusters = clusterer.cluster(texts)
-    print("Clusters:", clusters)
-
-    # Get replacement map
-    replacement_map = clusterer.get_replacement_map(texts)
-    print("\nReplacement map:", replacement_map)
-
-    # Replace values
-    replaced_texts = clusterer.replace_values(texts)
-    print("\nReplaced texts:", replaced_texts)
