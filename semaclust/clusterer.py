@@ -2,6 +2,8 @@ from sklearn.cluster import AgglomerativeClustering
 from sentence_transformers import SentenceTransformer
 from collections import defaultdict
 from typing import List, Dict, Union, Callable
+from functools import lru_cache
+import numpy as np
 
 
 class TextClusterer:
@@ -10,7 +12,10 @@ class TextClusterer:
     """
 
     def __init__(
-        self, model_name: str = "all-MiniLM-L6-v2", distance_threshold: float = 1.0
+        self,
+        model_name: str = "all-MiniLM-L6-v2",
+        distance_threshold: float = 1.0,
+        batch_size: int = 32,
     ):
         """
         Initialize the TextClusterer.
@@ -18,12 +23,15 @@ class TextClusterer:
         Args:
             model_name (str): SentenceTransformer model name to use.
             distance_threshold (float): Distance threshold for clustering.
+            batch_size (int): Batch size for processing large text lists.
         """
         self.model_name = model_name
         self.distance_threshold = distance_threshold
+        self.batch_size = batch_size
         self.model = SentenceTransformer(model_name)
 
-    def _normalize_texts(self, texts: List[str]) -> List[str]:
+    @staticmethod
+    def _normalize_texts(texts: List[str]) -> List[str]:
         """
         Normalize a list of texts.
 
@@ -35,6 +43,36 @@ class TextClusterer:
         """
         return [text.lower().strip().replace('"', "") for text in texts]
 
+    @lru_cache(maxsize=1024)
+    def _get_embedding(self, text: str) -> np.ndarray:
+        """
+        Get embedding for a single text with caching.
+
+        Args:
+            text (str): Input text to embed.
+
+        Returns:
+            np.ndarray: Text embedding.
+        """
+        return self.model.encode(text)
+
+    def _batch_encode(self, texts: List[str]) -> np.ndarray:
+        """
+        Encode texts in batches.
+
+        Args:
+            texts (List[str]): List of texts to encode.
+
+        Returns:
+            np.ndarray: Array of embeddings.
+        """
+        embeddings = []
+        for i in range(0, len(texts), self.batch_size):
+            batch = texts[i : i + self.batch_size]
+            batch_embeddings = self.model.encode(batch)
+            embeddings.extend(batch_embeddings)
+        return np.array(embeddings)
+
     def cluster(self, texts: List[str]) -> Dict[int, List[str]]:
         """
         Cluster a list of texts using sentence embeddings and agglomerative clustering.
@@ -45,15 +83,18 @@ class TextClusterer:
         Returns:
             Dict[int, List[str]]: A dictionary mapping cluster IDs to lists of texts.
         """
+        if not texts:
+            return {}
+
         # Normalize text
         normalized_texts = self._normalize_texts(texts)
 
-        # Encode texts
-        embeddings = self.model.encode(normalized_texts)
+        # Encode texts in batches
+        embeddings = self._batch_encode(normalized_texts)
 
         # Perform clustering
         clustering = AgglomerativeClustering(
-            n_clusters=None, distance_threshold=self.distance_threshold
+            n_clusters=None, distance_threshold=self.distance_threshold, metric="cosine"
         )
         labels = clustering.fit_predict(embeddings)
 
