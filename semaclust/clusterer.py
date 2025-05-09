@@ -51,7 +51,10 @@ class TextClusterer:
 
         # Perform clustering
         clustering = AgglomerativeClustering(
-            n_clusters=None, distance_threshold=self.distance_threshold, metric="cosine"
+            n_clusters=None,
+            distance_threshold=self.distance_threshold,
+            metric="cosine",
+            linkage="average",
         )
         labels = clustering.fit_predict(embeddings)
 
