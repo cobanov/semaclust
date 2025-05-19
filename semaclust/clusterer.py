@@ -49,12 +49,12 @@ class TextClusterer:
         # Encode texts in batches
         embeddings = self._batch_encode(normalized_texts)
 
-        # Perform clustering
+        # Perform clustering with Euclidean distance and Ward linkage
         clustering = AgglomerativeClustering(
             n_clusters=None,
             distance_threshold=self.distance_threshold,
-            metric="cosine",
-            linkage="average",
+            metric="euclidean",
+            linkage="ward",
         )
         labels = clustering.fit_predict(embeddings)
 
@@ -63,7 +63,8 @@ class TextClusterer:
         for text, label in zip(texts, labels):
             clusters[label].append(text)
 
-        return dict(clusters)
+        # Convert numpy.int64 keys to Python int
+        return {int(k): v for k, v in clusters.items()}
 
     def get_replacement_map(
         self,
