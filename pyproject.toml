@@ -1,36 +1,140 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
 
 [project]
 name = "semaclust"
-version = "0.1.1"
 description = "Semantic text clustering using sentence embeddings and agglomerative clustering."
-readme = "readme.md"
-authors = [
-    {name = "Mert Cobanov", email = "mertcobanov@gmail.com"}
-]
-license = {text = "MIT"}
-requires-python = ">=3.7"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Mert Cobanov", email = "mertcobanov@gmail.com" }]
+keywords = ["nlp", "clustering", "text", "semantic", "embeddings", "sentence-transformers"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Text Processing :: General",
+    "Typing :: Typed",
 ]
+dynamic = ["version"]
 dependencies = [
-    "scikit-learn>=1.0",
+    "numpy>=1.23",
+    "scikit-learn>=1.2",
     "sentence-transformers>=2.2",
-    "numpy>=1.20",
+    "typer>=0.12",
 ]
-keywords = ["nlp", "clustering", "text", "semantic", "embeddings"]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.10",
+    "pre-commit>=3.7",
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "pytest-randomly>=3.15",
+    "ruff>=0.6",
+]
+docs = [
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.25",
+]
+
+[project.scripts]
+semaclust = "semaclust.cli:app"
 
 [project.urls]
 Homepage = "https://github.com/cobanov/semaclust"
-Repository = "https://github.com/cobanov/semaclust.git" 
+Repository = "https://github.com/cobanov/semaclust"
+Issues = "https://github.com/cobanov/semaclust/issues"
+Changelog = "https://github.com/cobanov/semaclust/blob/main/CHANGELOG.md"
+
+[tool.hatch.version]
+path = "src/semaclust/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/semaclust"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/semaclust",
+    "tests",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "pyproject.toml",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP",
+    "N",
+    "SIM",
+    "RUF",
+    "PL",
+    "PT",
+]
+ignore = [
+    "PLR0913",
+    "PLR2004",
+    "PLC0415",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["PLR2004", "S101", "PT011"]
+"examples/*" = ["T201", "INP001"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+files = ["src/semaclust"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = [
+    "-ra",
+    "--strict-config",
+    "--strict-markers",
+    "--import-mode=importlib",
+]
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow (run with '-m slow')",
+    "integration: tests that load the sentence-transformers model",
+]
+
+[tool.coverage.run]
+source = ["semaclust"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.:",
+]
+show_missing = true
