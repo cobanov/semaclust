@@ -10,6 +10,8 @@ similar strings using sentence embeddings and agglomerative clustering. It is
 useful for deduplicating free-text fields, normalizing user-entered values, and
 collapsing spelling or formatting variants into a canonical form.
 
+**Documentation:** https://cobanov.github.io/semaclust/
+
 ## Installation
 
 ```bash
