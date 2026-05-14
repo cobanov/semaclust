@@ -110,7 +110,7 @@ class TextClusterer:
         self.random_state = random_state
         self._result: ClusterResult | None = None
 
-    def fit(self, texts: Sequence[str]) -> "TextClusterer":
+    def fit(self, texts: Sequence[str]) -> TextClusterer:
         """Cluster ``texts`` and store fitted attributes on this instance."""
         self._result = self._cluster(texts)
         self.labels_ = self._result.labels
