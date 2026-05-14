@@ -1,11 +1,12 @@
-# Migration from 0.1.x to 0.2.0
+# Migration from 0.1.x to 0.3.0
 
-The 0.2 release is a deliberate break. The old single-method API is replaced
-with a scikit-learn style estimator.
+The 0.3 release is a deliberate break from the old single-method API in
+favor of a scikit-learn style estimator. (Version 0.2.0 was a stale draft on
+PyPI; this is the first modernized release.)
 
 ## At a glance
 
-| 0.1.x | 0.2.x |
+| 0.1.x | 0.3.x |
 |---|---|
 | `TextClusterer().cluster(texts)` | `TextClusterer().fit(texts).clusters_` |
 | `TextClusterer().get_replacement_map(texts)` | `TextClusterer().fit(texts).get_replacement_map()` |
@@ -50,6 +51,7 @@ replaced = clusterer.transform()
 
 ## Other changes
 
+- Skipped 0.2.0, which was an early draft published to PyPI.
 - Minimum Python is now 3.10.
 - Built-in CLI: `semaclust cluster` and `semaclust replace`.
 - The package ships `py.typed` and is mypy strict.

@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.0] - 2026-05-14
+## [0.3.0] - 2026-05-14
+
+Skips 0.2.0, which was published from an earlier draft on PyPI. This release
+is the official modernization of the library.
 
 ### Added
 - scikit-learn style `fit`, `fit_predict`, `fit_transform`, `transform` API

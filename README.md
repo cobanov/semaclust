@@ -102,10 +102,10 @@ Run `semaclust --help` for the full reference.
 
 ## Migration from 0.1.x
 
-The 0.2 release is a breaking change. The single `cluster(texts)` entry point
+The 0.3 release is a breaking change. The single `cluster(texts)` entry point
 is gone; the new API mirrors scikit-learn:
 
-| 0.1.x | 0.2.x |
+| 0.1.x | 0.3.x |
 |---|---|
 | `clusterer.cluster(texts)` | `clusterer.fit(texts).clusters_` |
 | `clusterer.get_replacement_map(texts)` | `clusterer.fit(texts).get_replacement_map()` |
