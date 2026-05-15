@@ -57,7 +57,4 @@ class ClusterResult:
         return [mapping.get(t, t) for t in source]
 
     def __repr__(self) -> str:
-        return (
-            f"ClusterResult(n_clusters={self.n_clusters}, "
-            f"n_texts={len(self.texts)})"
-        )
+        return f"ClusterResult(n_clusters={self.n_clusters}, n_texts={len(self.texts)})"

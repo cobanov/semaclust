@@ -161,8 +161,7 @@ class TextClusterer:
             fitted = "not fitted"
         else:
             fitted = (
-                f"fitted, n_clusters={self._result.n_clusters}, "
-                f"n_texts={len(self._result.texts)}"
+                f"fitted, n_clusters={self._result.n_clusters}, n_texts={len(self._result.texts)}"
             )
         return (
             f"TextClusterer(encoder={self.encoder!r}, "
