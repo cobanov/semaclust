@@ -17,7 +17,7 @@ texts = [
     "San Francisco", "San Fran", "SF",
 ]
 
-clusterer = TextClusterer(distance_threshold=0.5)
+clusterer = TextClusterer(distance_threshold=1.0)
 clusterer.fit(texts)
 
 clusterer.n_clusters_       # 3
@@ -40,7 +40,9 @@ clusterer.fit_transform(texts)
 
 `distance_threshold` controls cluster granularity. Smaller values produce
 tighter, more numerous clusters; larger values merge more aggressively. The
-useful range with the default encoder is roughly `0.2` to `1.2`.
+useful range with the default encoder (`all-MiniLM-L6-v2`) under
+`ward + euclidean` linkage is roughly `0.7` to `1.4` for unit-norm embeddings.
+See [benchmarks.md](../benchmarks.md) for per-model sweet spots.
 
 ## Custom representative
 
@@ -48,7 +50,7 @@ Pick the longest string as the representative instead of the shortest:
 
 ```python
 clusterer = TextClusterer(
-    distance_threshold=0.5,
+    distance_threshold=1.0,
     representative_selector=lambda texts: max(texts, key=len),
 )
 ```
@@ -70,6 +72,6 @@ TextClusterer(encoder=HashEncoder()).fit_predict(["a", "b"])
 ## CLI
 
 ```bash
-semaclust cluster items.txt --threshold 0.4 --output clusters.json
-cat items.txt | semaclust replace --threshold 0.4 > normalized.txt
+semaclust cluster items.txt --threshold 1.0 --output clusters.json
+cat items.txt | semaclust replace --threshold 1.0 > normalized.txt
 ```

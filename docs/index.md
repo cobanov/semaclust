@@ -8,7 +8,7 @@ formatting variants into a canonical form.
 ```python
 from semaclust import TextClusterer
 
-clusterer = TextClusterer(distance_threshold=0.5)
+clusterer = TextClusterer(distance_threshold=1.0)
 clusterer.fit(["New York", "NYC", "Los Angeles", "LA"])
 print(clusterer.clusters_)
 ```

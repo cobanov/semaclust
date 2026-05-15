@@ -1,0 +1,6079 @@
+{
+  "thresholds": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0,
+    1.05,
+    1.1,
+    1.15,
+    1.2,
+    1.25,
+    1.3,
+    1.35,
+    1.4,
+    1.45,
+    1.5,
+    1.55,
+    1.6,
+    1.65,
+    1.7,
+    1.75,
+    1.8,
+    1.85,
+    1.9,
+    1.95,
+    2.0
+  ],
+  "test_cases": [
+    {
+      "name": "cities",
+      "description": "Short text with abbreviations and casing variants",
+      "texts": [
+        "New York",
+        "NYC",
+        "new york city",
+        "Los Angeles",
+        "LA",
+        "San Francisco",
+        "San Fran",
+        "SF"
+      ],
+      "expected_groups": [
+        [
+          "New York",
+          "NYC",
+          "new york city"
+        ],
+        [
+          "Los Angeles",
+          "LA"
+        ],
+        [
+          "San Francisco",
+          "San Fran",
+          "SF"
+        ]
+      ]
+    },
+    {
+      "name": "job_titles",
+      "description": "Medium-length text with synonyms and abbreviations",
+      "texts": [
+        "Software Engineer",
+        "Software Developer",
+        "SWE",
+        "Programmer",
+        "Data Scientist",
+        "ML Engineer",
+        "Machine Learning Engineer",
+        "Product Manager",
+        "PM",
+        "Product Owner"
+      ],
+      "expected_groups": [
+        [
+          "Software Engineer",
+          "Software Developer",
+          "SWE",
+          "Programmer"
+        ],
+        [
+          "Data Scientist",
+          "ML Engineer",
+          "Machine Learning Engineer"
+        ],
+        [
+          "Product Manager",
+          "PM",
+          "Product Owner"
+        ]
+      ]
+    },
+    {
+      "name": "feedback",
+      "description": "Longer sentences grouped by topic (shipping / defect / support)",
+      "texts": [
+        "The product arrived on time and works great",
+        "Fast delivery, item works perfectly",
+        "Shipping was quick and the quality is excellent",
+        "Product broke after a week of use",
+        "Item stopped working within days of purchase",
+        "Defective product, very disappointed with the quality",
+        "Customer service was very helpful and friendly",
+        "Support team resolved my issue quickly",
+        "Great help from the customer service representative"
+      ],
+      "expected_groups": [
+        [
+          "The product arrived on time and works great",
+          "Fast delivery, item works perfectly",
+          "Shipping was quick and the quality is excellent"
+        ],
+        [
+          "Product broke after a week of use",
+          "Item stopped working within days of purchase",
+          "Defective product, very disappointed with the quality"
+        ],
+        [
+          "Customer service was very helpful and friendly",
+          "Support team resolved my issue quickly",
+          "Great help from the customer service representative"
+        ]
+      ]
+    }
+  ],
+  "models": [
+    {
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "status": "ok",
+      "load_time_s": 2.746,
+      "embed_dim": 384,
+      "param_count": 22713216,
+      "prompt_prefix": null,
+      "per_case": {
+        "cities": {
+          "status": "ok",
+          "encode_time_s": 0.198,
+          "best_ari": 1.0,
+          "best_ari_threshold": 0.7,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            0.7,
+            0.75,
+            0.8,
+            0.85,
+            0.9,
+            0.95,
+            1.0,
+            1.05,
+            1.1,
+            1.15,
+            1.2
+          ],
+          "perfect_threshold_min": 0.7,
+          "perfect_threshold_max": 1.2,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "job_titles": {
+          "status": "ok",
+          "encode_time_s": 0.029,
+          "best_ari": 0.6725,
+          "best_ari_threshold": 1.05,
+          "best_ari_n_clusters": 5,
+          "perfect_thresholds": [],
+          "perfect_threshold_min": null,
+          "perfect_threshold_max": null,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 7,
+              "ari": 0.4231
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 4,
+              "ari": 0.2808
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 4,
+              "ari": 0.2808
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 3,
+              "ari": 0.2475
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 3,
+              "ari": 0.2475
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 3,
+              "ari": 0.2475
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "feedback": {
+          "status": "ok",
+          "encode_time_s": 0.034,
+          "best_ari": 1.0,
+          "best_ari_threshold": 1.25,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            1.25,
+            1.3,
+            1.35,
+            1.4
+          ],
+          "perfect_threshold_min": 1.25,
+          "perfect_threshold_max": 1.4,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 7,
+              "ari": 0.3
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 4,
+              "ari": 0.84
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model_id": "sentence-transformers/all-MiniLM-L12-v2",
+      "status": "ok",
+      "load_time_s": 2.717,
+      "embed_dim": 384,
+      "param_count": 33360000,
+      "prompt_prefix": null,
+      "per_case": {
+        "cities": {
+          "status": "ok",
+          "encode_time_s": 0.022,
+          "best_ari": 1.0,
+          "best_ari_threshold": 0.8,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            0.8,
+            0.85,
+            0.9,
+            0.95,
+            1.0,
+            1.05,
+            1.1,
+            1.15,
+            1.2
+          ],
+          "perfect_threshold_min": 0.8,
+          "perfect_threshold_max": 1.2,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "job_titles": {
+          "status": "ok",
+          "encode_time_s": 0.011,
+          "best_ari": 0.5116,
+          "best_ari_threshold": 0.85,
+          "best_ari_n_clusters": 6,
+          "perfect_thresholds": [],
+          "perfect_threshold_min": null,
+          "perfect_threshold_max": null,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 4,
+              "ari": 0.2808
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 4,
+              "ari": 0.2808
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 3,
+              "ari": 0.2475
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 3,
+              "ari": 0.2475
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 3,
+              "ari": 0.2475
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "feedback": {
+          "status": "ok",
+          "encode_time_s": 0.012,
+          "best_ari": 1.0,
+          "best_ari_threshold": 1.2,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            1.2,
+            1.25,
+            1.3,
+            1.35,
+            1.4,
+            1.45
+          ],
+          "perfect_threshold_min": 1.2,
+          "perfect_threshold_max": 1.45,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 7,
+              "ari": 0.3
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 7,
+              "ari": 0.3
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 4,
+              "ari": 0.84
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 4,
+              "ari": 0.84
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model_id": "sentence-transformers/all-mpnet-base-v2",
+      "status": "ok",
+      "load_time_s": 2.768,
+      "embed_dim": 768,
+      "param_count": 109486464,
+      "prompt_prefix": null,
+      "per_case": {
+        "cities": {
+          "status": "ok",
+          "encode_time_s": 0.133,
+          "best_ari": 0.619,
+          "best_ari_threshold": 0.85,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [],
+          "perfect_threshold_min": null,
+          "perfect_threshold_max": null,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 6,
+              "ari": 0.125
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 4,
+              "ari": 0.5789
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 4,
+              "ari": 0.5789
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 4,
+              "ari": 0.5789
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 3,
+              "ari": 0.619
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 3,
+              "ari": 0.619
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 3,
+              "ari": 0.619
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 3,
+              "ari": 0.619
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "job_titles": {
+          "status": "ok",
+          "encode_time_s": 0.049,
+          "best_ari": 0.5116,
+          "best_ari_threshold": 0.85,
+          "best_ari_n_clusters": 6,
+          "perfect_thresholds": [],
+          "perfect_threshold_min": null,
+          "perfect_threshold_max": null,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 7,
+              "ari": 0.4231
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 7,
+              "ari": 0.4231
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 4,
+              "ari": 0.2808
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 4,
+              "ari": 0.2808
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 3,
+              "ari": 0.2475
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 3,
+              "ari": 0.2475
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "feedback": {
+          "status": "ok",
+          "encode_time_s": 0.052,
+          "best_ari": 1.0,
+          "best_ari_threshold": 1.1,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            1.1,
+            1.15,
+            1.2,
+            1.25,
+            1.3,
+            1.35,
+            1.4
+          ],
+          "perfect_threshold_min": 1.1,
+          "perfect_threshold_max": 1.4,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model_id": "BAAI/bge-small-en-v1.5",
+      "status": "ok",
+      "load_time_s": 2.59,
+      "embed_dim": 384,
+      "param_count": 33360000,
+      "prompt_prefix": null,
+      "per_case": {
+        "cities": {
+          "status": "ok",
+          "encode_time_s": 0.023,
+          "best_ari": 1.0,
+          "best_ari_threshold": 0.55,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            0.55,
+            0.6,
+            0.65,
+            0.7,
+            0.75,
+            0.8,
+            0.85,
+            0.9,
+            0.95,
+            1.0
+          ],
+          "perfect_threshold_min": 0.55,
+          "perfect_threshold_max": 1.0,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "job_titles": {
+          "status": "ok",
+          "encode_time_s": 0.018,
+          "best_ari": 0.6725,
+          "best_ari_threshold": 0.8,
+          "best_ari_n_clusters": 5,
+          "perfect_thresholds": [],
+          "perfect_threshold_min": null,
+          "perfect_threshold_max": null,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 7,
+              "ari": 0.3284
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 7,
+              "ari": 0.3284
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 7,
+              "ari": 0.3284
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 4,
+              "ari": 0.6186
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 4,
+              "ari": 0.6186
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 3,
+              "ari": 0.2475
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "feedback": {
+          "status": "ok",
+          "encode_time_s": 0.012,
+          "best_ari": 1.0,
+          "best_ari_threshold": 0.95,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            0.95,
+            1.0,
+            1.05,
+            1.1
+          ],
+          "perfect_threshold_min": 0.95,
+          "perfect_threshold_max": 1.1,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 7,
+              "ari": 0.3
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 4,
+              "ari": 0.84
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model_id": "BAAI/bge-m3",
+      "status": "ok",
+      "load_time_s": 6.493,
+      "embed_dim": 1024,
+      "param_count": 567754752,
+      "prompt_prefix": null,
+      "per_case": {
+        "cities": {
+          "status": "ok",
+          "encode_time_s": 0.245,
+          "best_ari": 1.0,
+          "best_ari_threshold": 0.95,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            0.95,
+            1.0,
+            1.05
+          ],
+          "perfect_threshold_min": 0.95,
+          "perfect_threshold_max": 1.05,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "job_titles": {
+          "status": "ok",
+          "encode_time_s": 0.052,
+          "best_ari": 0.52,
+          "best_ari_threshold": 1.1,
+          "best_ari_n_clusters": 4,
+          "perfect_thresholds": [],
+          "perfect_threshold_min": null,
+          "perfect_threshold_max": null,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 5,
+              "ari": 0.3644
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 4,
+              "ari": 0.52
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 3,
+              "ari": 0.4118
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 3,
+              "ari": 0.4118
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "feedback": {
+          "status": "ok",
+          "encode_time_s": 0.082,
+          "best_ari": 1.0,
+          "best_ari_threshold": 0.85,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            0.85
+          ],
+          "perfect_threshold_min": 0.85,
+          "perfect_threshold_max": 0.85,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 6,
+              "ari": 0.5455
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 4,
+              "ari": 0.84
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 4,
+              "ari": 0.84
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model_id": "nomic-ai/nomic-embed-text-v1.5",
+      "status": "ok",
+      "load_time_s": 5.609,
+      "embed_dim": 768,
+      "param_count": 136731648,
+      "prompt_prefix": "clustering: ",
+      "per_case": {
+        "cities": {
+          "status": "ok",
+          "encode_time_s": 0.391,
+          "best_ari": 1.0,
+          "best_ari_threshold": 0.5,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            0.5,
+            0.55,
+            0.6,
+            0.65,
+            0.7,
+            0.75,
+            0.8,
+            0.85,
+            0.9
+          ],
+          "perfect_threshold_min": 0.5,
+          "perfect_threshold_max": 0.9,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "job_titles": {
+          "status": "ok",
+          "encode_time_s": 0.114,
+          "best_ari": 0.52,
+          "best_ari_threshold": 0.75,
+          "best_ari_n_clusters": 4,
+          "perfect_thresholds": [],
+          "perfect_threshold_min": null,
+          "perfect_threshold_max": null,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 7,
+              "ari": 0.4231
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 4,
+              "ari": 0.52
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 3,
+              "ari": 0.4118
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 3,
+              "ari": 0.4118
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 3,
+              "ari": 0.4118
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "feedback": {
+          "status": "ok",
+          "encode_time_s": 0.173,
+          "best_ari": 1.0,
+          "best_ari_threshold": 0.7,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            0.7,
+            0.75,
+            0.8,
+            0.85
+          ],
+          "perfect_threshold_min": 0.7,
+          "perfect_threshold_max": 0.85,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 7,
+              "ari": 0.3
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model_id": "nomic-ai/nomic-embed-text-v2-moe",
+      "status": "ok",
+      "load_time_s": 14.421,
+      "embed_dim": 768,
+      "param_count": 475292928,
+      "prompt_prefix": "clustering: ",
+      "per_case": {
+        "cities": {
+          "status": "ok",
+          "encode_time_s": 1.098,
+          "best_ari": 1.0,
+          "best_ari_threshold": 1.15,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            1.15,
+            1.2,
+            1.25,
+            1.3,
+            1.35,
+            1.4,
+            1.45
+          ],
+          "perfect_threshold_min": 1.15,
+          "perfect_threshold_max": 1.45,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 5,
+              "ari": 0.6667
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "job_titles": {
+          "status": "ok",
+          "encode_time_s": 0.323,
+          "best_ari": 0.6725,
+          "best_ari_threshold": 1.2,
+          "best_ari_n_clusters": 5,
+          "perfect_thresholds": [],
+          "perfect_threshold_min": null,
+          "perfect_threshold_max": null,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 4,
+              "ari": 0.6186
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 4,
+              "ari": 0.6186
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "feedback": {
+          "status": "ok",
+          "encode_time_s": 0.539,
+          "best_ari": 1.0,
+          "best_ari_threshold": 1.1,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            1.1,
+            1.15,
+            1.2,
+            1.25,
+            1.3,
+            1.35
+          ],
+          "perfect_threshold_min": 1.1,
+          "perfect_threshold_max": 1.35,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 4,
+              "ari": 0.84
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model_id": "mixedbread-ai/mxbai-embed-large-v1",
+      "status": "ok",
+      "load_time_s": 6.9,
+      "embed_dim": 1024,
+      "param_count": 335141888,
+      "prompt_prefix": null,
+      "per_case": {
+        "cities": {
+          "status": "ok",
+          "encode_time_s": 0.129,
+          "best_ari": 1.0,
+          "best_ari_threshold": 0.8,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            0.8,
+            0.85,
+            0.9,
+            0.95,
+            1.0,
+            1.05
+          ],
+          "perfect_threshold_min": 0.8,
+          "perfect_threshold_max": 1.05,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 6,
+              "ari": 0.375
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 4,
+              "ari": 0.7895
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 2,
+              "ari": 0.5556
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "job_titles": {
+          "status": "ok",
+          "encode_time_s": 0.075,
+          "best_ari": 0.8148,
+          "best_ari_threshold": 1.0,
+          "best_ari_n_clusters": 4,
+          "perfect_thresholds": [],
+          "perfect_threshold_min": null,
+          "perfect_threshold_max": null,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 4,
+              "ari": 0.8148
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 3,
+              "ari": 0.4118
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 2,
+              "ari": 0.3119
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "feedback": {
+          "status": "ok",
+          "encode_time_s": 0.074,
+          "best_ari": 1.0,
+          "best_ari_threshold": 0.95,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            0.95,
+            1.0,
+            1.05,
+            1.1,
+            1.15,
+            1.2
+          ],
+          "perfect_threshold_min": 0.95,
+          "perfect_threshold_max": 1.2,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 6,
+              "ari": 0.5455
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 5,
+              "ari": 0.6522
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 4,
+              "ari": 0.84
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model_id": "google/embeddinggemma-300m",
+      "status": "load_failed",
+      "error": "GatedRepoError('401 Client Error. (Request ID: Root=1-6a074fb1-2a018e7c161683f8426868ae;6088d254-d12e-45f7-928f-9bb2842d8321)\\n\\nCannot access gated repo for url https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json.\\nAccess to model google/embeddinggemma-300m is restricted. You must have access to it and be authenticated to access it. Please log in.')",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\", line 761, in hf_raise_for_status\n    response.raise_for_status()\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/httpx/_models.py\", line 829, in raise_for_status\n    raise HTTPStatusError(message, request=request, response=self)\nhttpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/benchmarks/run_benchmark.py\", line 160, in evaluate_model\n    model = SentenceTransformer(model_id, trust_remote_code=trust_remote_code)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/sentence_transformers/util/decorators.py\", line 41, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/sentence_transformers/sentence_transformer/model.py\", line 184, in __init__\n    super().__init__(\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/sentence_transformers/base/model.py\", line 204, in __init__\n    modules, self.module_kwargs = self._load_modules(\n                                  ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/sentence_transformers/base/model.py\", line 972, in _load_modules\n    modules_json_path = load_file_path(\n                        ^^^^^^^^^^^^^^^\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/sentence_transformers/util/file_io.py\", line 116, in load_file_path\n    return hf_hub_download(\n           ^^^^^^^^^^^^^^^^\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\", line 88, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py\", line 997, in hf_hub_download\n    return _hf_hub_download_to_cache_dir(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py\", line 1148, in _hf_hub_download_to_cache_dir\n    _raise_on_head_call_error(head_call_error, force_download, local_files_only)\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py\", line 1782, in _raise_on_head_call_error\n    raise head_call_error\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py\", line 1669, in _get_metadata_or_catch_error\n    metadata = get_hf_file_metadata(\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\", line 88, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py\", line 1591, in get_hf_file_metadata\n    response = _httpx_follow_relative_redirects_with_backoff(\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\", line 692, in _httpx_follow_relative_redirects_with_backoff\n    hf_raise_for_status(response)\n  File \"/Users/cobanov/Developer/semaclust/.claude/worktrees/kind-goldstine-50ca9f/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\", line 787, in hf_raise_for_status\n    raise _format(GatedRepoError, message, response, repo_type=repo_type, repo_id=repo_id) from e\nhuggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-6a074fb1-2a018e7c161683f8426868ae;6088d254-d12e-45f7-928f-9bb2842d8321)\n\nCannot access gated repo for url https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json.\nAccess to model google/embeddinggemma-300m is restricted. You must have access to it and be authenticated to access it. Please log in.\n"
+    },
+    {
+      "model_id": "Qwen/Qwen3-Embedding-0.6B",
+      "status": "ok",
+      "load_time_s": 10.18,
+      "embed_dim": 1024,
+      "param_count": 595776512,
+      "prompt_prefix": null,
+      "per_case": {
+        "cities": {
+          "status": "ok",
+          "encode_time_s": 0.247,
+          "best_ari": 0.5294,
+          "best_ari_threshold": 0.35,
+          "best_ari_n_clusters": 6,
+          "perfect_thresholds": [],
+          "perfect_threshold_min": null,
+          "perfect_threshold_max": null,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 8,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 7,
+              "ari": 0.2
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 6,
+              "ari": 0.5294
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 5,
+              "ari": 0.4444
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 5,
+              "ari": 0.4444
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 5,
+              "ari": 0.4444
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 5,
+              "ari": 0.4444
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 5,
+              "ari": 0.4444
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 4,
+              "ari": 0.5
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 4,
+              "ari": 0.5
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 4,
+              "ari": 0.5
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 2,
+              "ari": 0.1333
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 2,
+              "ari": 0.1333
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 2,
+              "ari": 0.1333
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 2,
+              "ari": 0.1333
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 2,
+              "ari": 0.1333
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "job_titles": {
+          "status": "ok",
+          "encode_time_s": 0.071,
+          "best_ari": 0.6725,
+          "best_ari_threshold": 0.75,
+          "best_ari_n_clusters": 5,
+          "perfect_thresholds": [],
+          "perfect_threshold_min": null,
+          "perfect_threshold_max": null,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 10,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 9,
+              "ari": 0.1176
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 8,
+              "ari": 0.2268
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 6,
+              "ari": 0.5116
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 5,
+              "ari": 0.6725
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 4,
+              "ari": 0.6186
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 4,
+              "ari": 0.6186
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 4,
+              "ari": 0.6186
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 4,
+              "ari": 0.6186
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 4,
+              "ari": 0.6186
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 4,
+              "ari": 0.6186
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 4,
+              "ari": 0.6186
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 3,
+              "ari": 0.3525
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 3,
+              "ari": 0.3525
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 2,
+              "ari": 0.4828
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        },
+        "feedback": {
+          "status": "ok",
+          "encode_time_s": 0.11,
+          "best_ari": 1.0,
+          "best_ari_threshold": 0.85,
+          "best_ari_n_clusters": 3,
+          "perfect_thresholds": [
+            0.85,
+            0.9,
+            0.95,
+            1.0,
+            1.05,
+            1.1
+          ],
+          "perfect_threshold_min": 0.85,
+          "perfect_threshold_max": 1.1,
+          "sweep": [
+            {
+              "threshold": 0.05,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.1,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.15,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.2,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.25,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.3,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.35,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.4,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.45,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.5,
+              "n_clusters": 9,
+              "ari": 0.0
+            },
+            {
+              "threshold": 0.55,
+              "n_clusters": 8,
+              "ari": 0.1579
+            },
+            {
+              "threshold": 0.6,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 0.65,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 0.7,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 0.75,
+              "n_clusters": 6,
+              "ari": 0.4286
+            },
+            {
+              "threshold": 0.8,
+              "n_clusters": 4,
+              "ari": 0.84
+            },
+            {
+              "threshold": 0.85,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.9,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 0.95,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.0,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.05,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.1,
+              "n_clusters": 3,
+              "ari": 1.0
+            },
+            {
+              "threshold": 1.15,
+              "n_clusters": 2,
+              "ari": 0.5
+            },
+            {
+              "threshold": 1.2,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.25,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.3,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.35,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.4,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.45,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.5,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.55,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.6,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.65,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.7,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.75,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.8,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.85,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.9,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 1.95,
+              "n_clusters": 1,
+              "ari": 0.0
+            },
+            {
+              "threshold": 2.0,
+              "n_clusters": 1,
+              "ari": 0.0
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

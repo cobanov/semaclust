@@ -63,7 +63,7 @@ def cluster(
     ] = "all-MiniLM-L6-v2",
     threshold: Annotated[
         float, typer.Option("--threshold", "-t", help="Agglomerative distance threshold.")
-    ] = 0.3,
+    ] = 1.0,
     output: Annotated[
         Path | None,
         typer.Option("--output", "-o", help="Write JSON output here instead of stdout."),
@@ -105,7 +105,7 @@ def replace(
         ),
     ] = None,
     model: Annotated[str, typer.Option("--model", "-m")] = "all-MiniLM-L6-v2",
-    threshold: Annotated[float, typer.Option("--threshold", "-t")] = 0.3,
+    threshold: Annotated[float, typer.Option("--threshold", "-t")] = 1.0,
     output: Annotated[Path | None, typer.Option("--output", "-o")] = None,
 ) -> None:
     """Replace each input line with its cluster representative."""

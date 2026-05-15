@@ -22,7 +22,7 @@ def main() -> None:
         "SF",
     ]
 
-    clusterer = TextClusterer(distance_threshold=0.5)
+    clusterer = TextClusterer(distance_threshold=1.0)
     clusterer.fit(texts)
 
     print(f"Found {clusterer.n_clusters_} clusters")

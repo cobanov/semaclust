@@ -52,7 +52,9 @@ class TextClusterer:
         passed to :class:`~semaclust.encoders.SentenceTransformerEncoder`.
     distance_threshold:
         Linkage distance above which clusters will not be merged. Smaller
-        values produce more, tighter clusters.
+        values produce more, tighter clusters. The default ``1.0`` is tuned
+        for ``ward + euclidean`` linkage on unit-norm sentence-transformer
+        embeddings; see `benchmarks.md` for per-model sweet spots.
     metric:
         Distance metric for :class:`~sklearn.cluster.AgglomerativeClustering`.
     linkage:
@@ -71,7 +73,7 @@ class TextClusterer:
     Examples
     --------
     >>> from semaclust import TextClusterer
-    >>> clusterer = TextClusterer(distance_threshold=0.5)
+    >>> clusterer = TextClusterer(distance_threshold=1.0)
     >>> texts = ["New York", "NYC", "Los Angeles", "LA"]
     >>> _ = clusterer.fit(texts)  # doctest: +SKIP
     >>> clusterer.transform()  # doctest: +SKIP
@@ -88,7 +90,7 @@ class TextClusterer:
         self,
         encoder: Encoder | str = "all-MiniLM-L6-v2",
         *,
-        distance_threshold: float = 0.3,
+        distance_threshold: float = 1.0,
         metric: str = "euclidean",
         linkage: str = "ward",
         batch_size: int = 32,

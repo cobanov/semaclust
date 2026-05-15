@@ -37,7 +37,7 @@ texts = [
     "San Francisco", "San Fran", "SF",
 ]
 
-clusterer = TextClusterer(distance_threshold=0.5)
+clusterer = TextClusterer(distance_threshold=1.0)
 clusterer.fit(texts)
 
 print(clusterer.n_clusters_)
@@ -55,7 +55,7 @@ print(clusterer.transform())
 `fit_transform` is the one-call shortcut:
 
 ```python
-TextClusterer(distance_threshold=0.5).fit_transform(texts)
+TextClusterer(distance_threshold=1.0).fit_transform(texts)
 ```
 
 ## API at a glance
@@ -71,6 +71,61 @@ TextClusterer(distance_threshold=0.5).fit_transform(texts)
 
 Fitted attributes (sklearn convention): `labels_`, `clusters_`,
 `representatives_`, `n_clusters_`, `texts_`.
+
+## Choosing a model and threshold
+
+The default encoder is `all-MiniLM-L6-v2` (22M params, 384-dim, ~80 MB). It's fast,
+small, and a sensible drop-in, but it isn't the strongest option for every task.
+The table below summarizes 9 encoders on three workloads of escalating
+difficulty: short text with abbreviations (cities), medium text with synonyms
+(job titles), and long sentences with topical themes (customer feedback). See
+[benchmarks.md](benchmarks.md) for the full methodology, raw thresholds, and
+per-test breakdowns.
+
+ARI (Adjusted Rand Index) of 1.0 means an exact match with the ground-truth
+clustering. Bold = perfect.
+
+| Model | Params | Dim | cities | job titles | feedback | Good threshold |
+|---|---|---|---|---|---|---|
+| `all-MiniLM-L6-v2` (default) | 23M | 384 | **1.000** | 0.672 | **1.000** | 1.0 (cities) / 1.3 (feedback) |
+| `all-MiniLM-L12-v2` | 33M | 384 | **1.000** | 0.512 | **1.000** | 1.20 |
+| `all-mpnet-base-v2` | 109M | 768 | 0.619 | 0.512 | **1.000** | - |
+| `BAAI/bge-small-en-v1.5` | 33M | 384 | **1.000** | 0.672 | **1.000** | 0.95 - 1.00 |
+| `BAAI/bge-m3` | 568M | 1024 | **1.000** | 0.520 | **1.000** | - |
+| `nomic-ai/nomic-embed-text-v1.5` * | 137M | 768 | **1.000** | 0.520 | **1.000** | 0.70 - 0.85 |
+| `nomic-ai/nomic-embed-text-v2-moe` * | 475M | 768 | **1.000** | 0.672 | **1.000** | 1.15 - 1.35 |
+| `mixedbread-ai/mxbai-embed-large-v1` | 335M | 1024 | **1.000** | **0.815** | **1.000** | 0.95 - 1.05 |
+| `Qwen/Qwen3-Embedding-0.6B` | 596M | 1024 | 0.529 | 0.672 | **1.000** | - |
+
+\* Requires a `clustering: ` prefix on each input. The bench applies this
+automatically; if you swap the model in directly, wrap it in a custom encoder
+that prepends the prefix.
+
+**Practical takeaways:**
+
+- **Bigger isn't better.** `all-mpnet-base-v2` and `Qwen3-Embedding-0.6B` both
+  *fail* the simplest test (cities) - they merge Los Angeles with San Francisco
+  before merging SF with San Francisco.
+- **Best small drop-in**: `BAAI/bge-small-en-v1.5` matches the default's size
+  class and has a single threshold window (0.95-1.00) that works for both
+  cities and feedback.
+- **Best overall**: `mixedbread-ai/mxbai-embed-large-v1` - the only model to
+  exceed 0.8 ARI on job titles, with a 0.10-wide cities+feedback overlap at
+  0.95-1.05. Costs 15x more parameters than the default.
+- **No model solves the job-titles case.** Synonymy across roles
+  (`SWE` ~ Programmer ~ Software Engineer, Product Manager ~ Product Owner)
+  defeats every encoder we tested.
+
+To swap the encoder, pass a string or a custom `Encoder`:
+
+```python
+from semaclust import TextClusterer
+
+clusterer = TextClusterer(
+    encoder="BAAI/bge-small-en-v1.5",
+    distance_threshold=1.0,
+)
+```
 
 ## Plugging in your own encoder
 
@@ -94,10 +149,10 @@ semaclust ships a small `typer`-based CLI:
 
 ```bash
 # Cluster lines from a file, write JSON
-semaclust cluster items.txt --threshold 0.4 --output clusters.json
+semaclust cluster items.txt --threshold 1.0 --output clusters.json
 
 # Replace each line with its cluster representative
-cat items.txt | semaclust replace --threshold 0.4
+cat items.txt | semaclust replace --threshold 1.0
 ```
 
 Run `semaclust --help` for the full reference.

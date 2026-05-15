@@ -71,5 +71,6 @@ class SentenceTransformerEncoder:
             batch_size=self.batch_size,
             show_progress_bar=False,
             convert_to_numpy=True,
+            normalize_embeddings=True,
         )
         return np.asarray(embeddings, dtype=np.float32)

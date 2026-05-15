@@ -45,6 +45,9 @@ docs = [
     "mkdocs-material>=9.5",
     "mkdocstrings[python]>=0.25",
 ]
+benchmarks = [
+    "einops>=0.8.2",
+]
 
 [project.scripts]
 semaclust = "semaclust.cli:app"

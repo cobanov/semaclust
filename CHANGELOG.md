@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- `TextClusterer` default `distance_threshold` raised from `0.3` to `1.0`.
+  The previous default was incompatible with the README quickstart at the
+  documented threshold; `1.0` works for unit-norm sentence-transformer
+  embeddings under `ward + euclidean` linkage. Existing users who passed an
+  explicit threshold are unaffected.
+- `semaclust` CLI default `--threshold` raised from `0.3` to `1.0` to match.
+- `SentenceTransformerEncoder` now passes `normalize_embeddings=True` to the
+  underlying model so unnormalized encoders (e.g. mxbai-embed-large) cluster
+  correctly under the default `ward + euclidean` setup.
+
+### Added
+- `benchmarks/` directory with reproducible benchmark across 9 sentence
+  encoders (MiniLM, mpnet, BGE small/m3, nomic v1.5/v2-moe, mxbai-embed-large,
+  Qwen3-Embedding) and 3 test cases (cities, job titles, customer feedback).
+  See [benchmarks.md](benchmarks.md).
+
 ## [0.3.0] - 2026-05-14
 
 Skips 0.2.0, which was published from an earlier draft on PyPI. This release
