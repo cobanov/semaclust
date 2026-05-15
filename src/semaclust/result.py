@@ -9,7 +9,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, repr=False)
 class ClusterResult:
     """Outcome of clustering a list of texts.
 
@@ -55,3 +55,9 @@ class ClusterResult:
         mapping = self.replacement_map()
         source = self.texts if texts is None else texts
         return [mapping.get(t, t) for t in source]
+
+    def __repr__(self) -> str:
+        return (
+            f"ClusterResult(n_clusters={self.n_clusters}, "
+            f"n_texts={len(self.texts)})"
+        )

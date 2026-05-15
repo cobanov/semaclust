@@ -74,3 +74,11 @@ class SentenceTransformerEncoder:
             normalize_embeddings=True,
         )
         return np.asarray(embeddings, dtype=np.float32)
+
+    def __repr__(self) -> str:
+        state = "loaded" if self._model is not None else "lazy"
+        return (
+            f"SentenceTransformerEncoder(model_name={self.model_name!r}, "
+            f"batch_size={self.batch_size}, device={self.device!r}, "
+            f"state={state!r})"
+        )

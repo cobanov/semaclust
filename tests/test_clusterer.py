@@ -152,3 +152,34 @@ def test_normalize_toggle_runs(
         encoder=cities_encoder, distance_threshold=0.2, normalize=normalize
     ).fit(city_texts)
     assert clusterer.n_clusters_ >= 1
+
+
+def test_repr_unfitted_includes_config(cities_encoder: FakeEncoder) -> None:
+    clusterer = _build(cities_encoder)
+    text = repr(clusterer)
+    assert "TextClusterer(" in text
+    assert "distance_threshold=0.2" in text
+    assert "linkage='ward'" in text
+    assert "not fitted" in text
+
+
+def test_repr_fitted_shows_cluster_count(
+    cities_encoder: FakeEncoder, city_texts: Sequence[str]
+) -> None:
+    clusterer = _build(cities_encoder).fit(city_texts)
+    text = repr(clusterer)
+    assert f"n_clusters={clusterer.n_clusters_}" in text
+    assert f"n_texts={len(city_texts)}" in text
+    assert "not fitted" not in text
+
+
+def test_cluster_result_repr_is_summary(
+    cities_encoder: FakeEncoder, city_texts: Sequence[str]
+) -> None:
+    result = _build(cities_encoder).fit(city_texts).result_
+    text = repr(result)
+    assert text.startswith("ClusterResult(")
+    assert f"n_clusters={result.n_clusters}" in text
+    assert f"n_texts={len(city_texts)}" in text
+    # The verbose dataclass default would dump the full labels array; ours doesn't.
+    assert "labels=" not in text

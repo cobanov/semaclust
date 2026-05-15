@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-05-15
+
+### Added
+- Readable `__repr__` for `TextClusterer`, `SentenceTransformerEncoder`, and
+  `ClusterResult`. Inspecting `clusterer`, `clusterer.encoder`, or
+  `clusterer.result_` now shows model name, config, and fitted state at a
+  glance instead of `<... object at 0x...>`.
+
+### Fixed
+- `docs/quickstart.md` linked to `../benchmarks.md`, which mkdocs strict mode
+  could not resolve (benchmarks.md lives at the repo root). Switched to the
+  canonical GitHub URL.
+
 ## [0.4.0] - 2026-05-15
 
 ### Changed

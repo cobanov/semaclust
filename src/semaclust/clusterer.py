@@ -156,6 +156,21 @@ class TextClusterer:
             )
         return self._result
 
+    def __repr__(self) -> str:
+        if self._result is None:
+            fitted = "not fitted"
+        else:
+            fitted = (
+                f"fitted, n_clusters={self._result.n_clusters}, "
+                f"n_texts={len(self._result.texts)}"
+            )
+        return (
+            f"TextClusterer(encoder={self.encoder!r}, "
+            f"distance_threshold={self.distance_threshold}, "
+            f"metric={self.metric!r}, linkage={self.linkage!r}, "
+            f"normalize={self.normalize}, {fitted})"
+        )
+
     def _cluster(self, texts: Sequence[str]) -> ClusterResult:
         original = tuple(texts)
         if not original:
