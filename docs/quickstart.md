@@ -42,7 +42,8 @@ clusterer.fit_transform(texts)
 tighter, more numerous clusters; larger values merge more aggressively. The
 useful range with the default encoder (`all-MiniLM-L6-v2`) under
 `ward + euclidean` linkage is roughly `0.7` to `1.4` for unit-norm embeddings.
-See [benchmarks.md](../benchmarks.md) for per-model sweet spots.
+See [benchmarks.md](https://github.com/cobanov/semaclust/blob/main/benchmarks.md)
+for per-model sweet spots.
 
 ## Custom representative
 
