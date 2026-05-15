@@ -183,3 +183,26 @@ def test_cluster_result_repr_is_summary(
     assert f"n_texts={len(city_texts)}" in text
     # The verbose dataclass default would dump the full labels array; ours doesn't.
     assert "labels=" not in text
+
+
+def test_device_forwarded_to_auto_created_encoder() -> None:
+    from semaclust.encoders import SentenceTransformerEncoder
+
+    clusterer = TextClusterer(encoder="all-MiniLM-L6-v2", device="cuda")
+    assert isinstance(clusterer.encoder, SentenceTransformerEncoder)
+    assert clusterer.encoder.device == "cuda"
+
+
+def test_device_default_is_auto_for_string_encoder() -> None:
+    from semaclust.encoders import SentenceTransformerEncoder
+
+    clusterer = TextClusterer(encoder="all-MiniLM-L6-v2")
+    assert isinstance(clusterer.encoder, SentenceTransformerEncoder)
+    assert clusterer.encoder.device == "auto"
+
+
+def test_device_ignored_for_custom_encoder(cities_encoder: FakeEncoder) -> None:
+    # Passing device alongside a custom encoder should not crash; the encoder
+    # is used as-is.
+    clusterer = TextClusterer(encoder=cities_encoder, device="cuda")
+    assert clusterer.encoder is cities_encoder

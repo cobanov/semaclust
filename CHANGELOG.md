@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-05-15
+
+### Added
+- `device="auto"` (new default) on `SentenceTransformerEncoder` and a `device`
+  parameter on `TextClusterer`. Picks CUDA if available, MPS on Apple Silicon,
+  else lets sentence-transformers fall back to CPU. Mac users now get GPU
+  acceleration out of the box without any code change.
+- `SentenceTransformerEncoder.effective_device` property that resolves the
+  `"auto"` sentinel.
+
+### Changed
+- `SentenceTransformerEncoder` default `device` is now `"auto"` instead of
+  `None`. Passing `None` still works and delegates to sentence-transformers
+  exactly as before.
+
 ## [0.4.1] - 2026-05-15
 
 ### Added

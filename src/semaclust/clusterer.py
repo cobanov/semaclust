@@ -69,6 +69,12 @@ class TextClusterer:
     random_state:
         Optional seed applied to ``random``, ``numpy``, and ``torch`` before
         encoding to make embedding-time stochastic ops reproducible.
+    device:
+        Torch device for the auto-created encoder. ``"auto"`` (default) picks
+        CUDA if available, then MPS on Apple Silicon, else falls back to CPU.
+        Pass ``"cuda"``, ``"mps"``, ``"cpu"`` to override, or ``None`` to let
+        sentence-transformers decide. Ignored when ``encoder`` is a custom
+        :class:`~semaclust.encoders.Encoder` instance.
 
     Examples
     --------
@@ -97,9 +103,10 @@ class TextClusterer:
         normalize: bool = True,
         representative_selector: Callable[[list[str]], str] = _default_representative,
         random_state: int | None = None,
+        device: str | None = "auto",
     ) -> None:
         self.encoder: Encoder = (
-            SentenceTransformerEncoder(model_name=encoder, batch_size=batch_size)
+            SentenceTransformerEncoder(model_name=encoder, batch_size=batch_size, device=device)
             if isinstance(encoder, str)
             else encoder
         )

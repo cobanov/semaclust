@@ -27,6 +27,24 @@ class Encoder(Protocol):
     def encode(self, texts: list[str]) -> NDArray[np.floating]: ...
 
 
+def _pick_device() -> str | None:
+    """Pick the best available torch device.
+
+    Order: CUDA > MPS (Apple Silicon) > None (let sentence-transformers fall
+    back to CPU). Import is local so semaclust import stays cheap.
+    """
+    try:
+        import torch
+    except ImportError:
+        return None
+    if torch.cuda.is_available():
+        return "cuda"
+    mps_backend = getattr(torch.backends, "mps", None)
+    if mps_backend is not None and mps_backend.is_available():
+        return "mps"
+    return None
+
+
 class SentenceTransformerEncoder:
     """Default encoder using sentence-transformers.
 
@@ -40,8 +58,11 @@ class SentenceTransformerEncoder:
     batch_size:
         Batch size used when encoding.
     device:
-        Optional torch device string (``"cpu"``, ``"cuda"``, ``"mps"``).
-        ``None`` lets sentence-transformers auto-select.
+        Torch device. ``"auto"`` (default) picks CUDA if available, then MPS
+        on Apple Silicon, and otherwise lets sentence-transformers fall back
+        to CPU. Pass an explicit string (``"cuda"``, ``"mps"``, ``"cpu"``) to
+        override, or ``None`` to delegate the choice entirely to
+        sentence-transformers.
     """
 
     def __init__(
@@ -49,20 +70,39 @@ class SentenceTransformerEncoder:
         model_name: str = "all-MiniLM-L6-v2",
         *,
         batch_size: int = 32,
-        device: str | None = None,
+        device: str | None = "auto",
     ) -> None:
         self.model_name = model_name
         self.batch_size = batch_size
         self.device = device
+        self._resolved_device: str | None = None
         self._model: SentenceTransformer | None = None
+
+    @property
+    def effective_device(self) -> str | None:
+        """The device string that will actually be passed to the model.
+
+        Resolves ``"auto"`` lazily on first access; for explicit values returns
+        what the user passed.
+        """
+        if self.device == "auto":
+            if self._resolved_device is None:
+                self._resolved_device = _pick_device()
+            return self._resolved_device
+        return self.device
 
     @property
     def model(self) -> SentenceTransformer:
         if self._model is None:
             from sentence_transformers import SentenceTransformer
 
-            logger.debug("Loading SentenceTransformer model %s", self.model_name)
-            self._model = SentenceTransformer(self.model_name, device=self.device)
+            device = self.effective_device
+            logger.debug(
+                "Loading SentenceTransformer model %s on device %r",
+                self.model_name,
+                device,
+            )
+            self._model = SentenceTransformer(self.model_name, device=device)
         return self._model
 
     def encode(self, texts: list[str]) -> NDArray[np.floating]:
@@ -77,8 +117,12 @@ class SentenceTransformerEncoder:
 
     def __repr__(self) -> str:
         state = "loaded" if self._model is not None else "lazy"
+        if self.device == "auto" and self._resolved_device is not None:
+            device_repr = f"'auto' (-> {self._resolved_device!r})"
+        else:
+            device_repr = repr(self.device)
         return (
             f"SentenceTransformerEncoder(model_name={self.model_name!r}, "
-            f"batch_size={self.batch_size}, device={self.device!r}, "
+            f"batch_size={self.batch_size}, device={device_repr}, "
             f"state={state!r})"
         )

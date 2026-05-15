@@ -127,6 +127,20 @@ clusterer = TextClusterer(
 )
 ```
 
+### Hardware acceleration
+
+`device="auto"` is the default. It picks CUDA if a GPU is visible, MPS on
+Apple Silicon, and otherwise lets sentence-transformers fall back to CPU.
+Mac users get the GPU for free; no code change needed.
+
+```python
+TextClusterer(device="auto")   # default; cuda > mps > cpu
+TextClusterer(device="mps")    # force MPS
+TextClusterer(device="cuda")   # force CUDA
+TextClusterer(device="cpu")    # force CPU
+TextClusterer(device=None)     # delegate to sentence-transformers (no MPS auto-pick)
+```
+
 ## Plugging in your own encoder
 
 Any object implementing `encode(texts: list[str]) -> np.ndarray` satisfies the
