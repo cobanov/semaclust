@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-05-15
+
 ### Changed
 - `TextClusterer` default `distance_threshold` raised from `0.3` to `1.0`.
   The previous default was incompatible with the README quickstart at the
@@ -23,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   encoders (MiniLM, mpnet, BGE small/m3, nomic v1.5/v2-moe, mxbai-embed-large,
   Qwen3-Embedding) and 3 test cases (cities, job titles, customer feedback).
   See [benchmarks.md](benchmarks.md).
+- README "Choosing a model and threshold" section with empirical guidance.
+- `benchmarks` optional dependency group (adds `einops` for the nomic models).
 
 ## [0.3.0] - 2026-05-14
 
